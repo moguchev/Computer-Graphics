@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <script type="text/javascript" src="./bresenham.js"></script>
+        <script type="text/javascript" src="./borderfill.js"></script>
+        <script type="text/javascript" src="./3dfuncs.js"></script>
+    </head>
+    <body>
+        <div>
+            <p>Координаты источника света</p>
+            <input type="number" id="x" name="Координата X"/> Координата X<Br>
+            <input type="number" id="y" name="Координата Y"/> Координата Y<Br>
+            <input type="number" id="z" name="Координата Z"/> Координата Z<Br>
+
+            <button id="do">Показать</button>
+        </div>
+
+        <canvas id='field' width='1024' height='1024'></canvas>
+        <script>
+            var canvas = document.getElementById('field');
+            canvas.oncontextmenu = function() { return false; }
+            var ctx = canvas.getContext("2d", { antialias:false, depth: false});
+            var parray = new Array();
+            var rarray = new Array();
+            var state = 0;
+            var n = 0, r = 0;
+            var x0, y0;
+            var w = canvas.width, h = canvas.height;
+            var maxy = 0, miny = canvas.height;
+            var color = 0x33ffaa;
+            
+            document.getElementById('do').addEventListener(
+                "click", function(event) {
+                    var L = {
+                      x: document.getElementById('x').value, 
+                      y: document.getElementById('y').value,
+                      z: document.getElementById('z').value
+                    };
+            
+                    color3dPlane(L,
+                                [{x:10, y:10, z:0}, {x:50, y:55, z:20},
+                                {x:15, y:100, z:20}], 
+                                color);         
+                }
+            );
+        </script> 
+    </body>
+</html>
